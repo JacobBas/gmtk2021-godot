@@ -4,6 +4,7 @@ extends Area2D
 var tile_size : int = 32
 var last_press: String = ""
 var walls : Array
+var index : Vector2
 
 var inputs_trans = {
 	"Arrow_Right": ["WASD_Right", Vector2.RIGHT],
@@ -36,10 +37,7 @@ func _ready():
 
 func _unhandled_input(event):
 	walls = self.get_parent().get_node("Walls").get_used_cells()
-	for item in walls:
-		if position == item:
-			print(item)
-			
+	index = Vector2((position[0] - 16)/32, (position[1] - 16)/32)
 	# checking the rotational movements
 	for dir in inputs_rotate.keys():
 		if event.is_action_released(dir):
@@ -71,7 +69,9 @@ func _unhandled_input(event):
 			print(last_press)
 			if inputs_trans[dir][0] == last_press:
 				last_press = ""
-				position += inputs_trans[dir][1] * tile_size
+				index += inputs_trans[dir][1]
+				if not (index in walls):
+					position += inputs_trans[dir][1] * tile_size
 				return null
 			else:
 				last_press = dir
