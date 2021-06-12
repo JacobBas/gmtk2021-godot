@@ -3,6 +3,7 @@ extends Area2D
 # Declare member variables here. Examples:
 var tile_size : int = 32
 var buffer_press: String = ""
+var block_size : int = 1
 
 var inputs = {"Arrow_Right": 1,
 			"Arrow_Left": 1,
@@ -99,14 +100,45 @@ func _unhandled_input(event):
 	for dir in inputs.keys():
 		if event.is_action_released(dir):
 			print("is_action_released " + dir)
+			#buffer was empty
 			if buffer_press == "" :
 				buffer_press = dir
 				print("buffer: " + buffer_press)
+			#buffer was full
 			else:
-				move(dir + "." + buffer_press)
+				# if moving into sticky block, convert block into WASD Player, but don't move
+				var stuck : bool = false
+				var sticky
+				for t_sticky in self.get_parent().get_parent().get_node("Sticky_Boxes").get_children():
+					print("Going to: " + str(position + inputs_wasd[dir + "." + buffer_press] * tile_size))
+					if position + inputs_wasd[dir + "." + buffer_press] * tile_size == t_sticky.position:
+						stuck = true
+						sticky = t_sticky
+				if stuck :
+					print("STICK!")
+					convert_sticky(sticky)
+				else:
+					move(dir + "." + buffer_press)
 				buffer_press = ""
 				print("buffer cleared!")
-			print("moved: " + str(position))
 
+
+func convert_sticky(sticky):
+	# This basically just deletes the sticky box and creates a player instead
+	block_size += 1
+	var temp_name : String = ("WASD_Player" + str(block_size))
+	print("Converting Sticky: " + temp_name)
+	var temp_pos : Vector2 = sticky.position
+	sticky.queue_free() # delete the Sticky_Box pass through the function
+	var scene = load("res://refactorme/WASD_Player.tscn")
+	var scene_instance = scene.instance()
+	scene_instance.set_name(temp_name)
+	get_parent().add_child(scene_instance)
+	get_parent().get_node(temp_name).position = temp_pos
+	print(get_parent().get_node(temp_name))
+	for w in get_parent().get_children() :
+		print(str(w.get_name()) + ": " + str(w.position))
+	 
 func move(dir):
 	position += inputs_wasd[dir] * tile_size
+	print("moved: " + str(position))

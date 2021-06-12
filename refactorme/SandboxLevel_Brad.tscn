@@ -75,7 +75,9 @@ position = Vector2( 304, 176 )
 position = Vector2( 304, 112 )
 
 [node name="Arrow_Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 496, 176 )
+position = Vector2( 720, 176 )
 
-[node name="WASD_Player" parent="." instance=ExtResource( 2 )]
+[node name="WASD_Players" type="Node2D" parent="."]
+
+[node name="WASD_Player" parent="WASD_Players" instance=ExtResource( 2 )]
 position = Vector2( 400, 176 )

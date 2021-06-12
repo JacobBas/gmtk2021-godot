@@ -97,15 +97,15 @@ func _process(delta):
 func _unhandled_input(event):
 	for dir in inputs.keys():
 		if event.is_action_released(dir):
-			print("is_action_released " + dir)
+			#print("is_action_released " + dir)
 			if buffer_press == "" :
 				buffer_press = dir
-				print("buffer: " + buffer_press)
+				#print("buffer: " + buffer_press)
 			else:
 				move(dir + "." + buffer_press)
 				buffer_press = ""
-				print("buffer cleared!")
-			print("moved: " + str(position))
+				#print("buffer cleared!")
+			#print("moved: " + str(position))
 
 func move(dir):
 	position += inputs_arrow[dir] * tile_size
