@@ -32,11 +32,14 @@ var inputs_reflect = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = position.snapped(Vector2.ONE * tile_size)
-	#position += Vector2.ONE * tile_size/2
+	pass
 
 func _unhandled_input(event):
-	
+	walls = self.get_parent().get_node("Walls").get_used_cells()
+	for item in walls:
+		if position == item:
+			print(item)
+			
 	# checking the rotational movements
 	for dir in inputs_rotate.keys():
 		if event.is_action_released(dir):
@@ -44,9 +47,7 @@ func _unhandled_input(event):
 			print(last_press)
 			if inputs_rotate[dir][0] == last_press:
 				last_press = ""
-				print("here")
 				rotation_degrees += inputs_rotate[dir][1]
-				print("moved: " + str(position))
 				return null
 
 	# checking the reflectional movements
@@ -61,7 +62,6 @@ func _unhandled_input(event):
 					scale.y = scale.y * inputs_reflect[dir][1]
 				else:
 					scale.x = scale.x * inputs_reflect[dir][1]
-				print("moved: " + str(position))
 				return null
 			
 	# checking the translational movements
@@ -72,11 +72,6 @@ func _unhandled_input(event):
 			if inputs_trans[dir][0] == last_press:
 				last_press = ""
 				position += inputs_trans[dir][1] * tile_size
-				print("moved: " + str(position))
-				walls = self.get_parent().get_node("Walls").get_used_cells()
-				for index in walls:
-					print(index)
-				print(get_overlapping_areas())
 				return null
 			else:
 				last_press = dir
