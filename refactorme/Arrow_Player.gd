@@ -2,8 +2,7 @@ extends Sprite
 
 # Declare member variables here. Examples:
 var tile_size : int = 32
-var last_press: String = ""
-var buffer_press : String = ""
+var buffer_press: String = ""
 
 var inputs = {"Arrow_Right": 1,
 			"Arrow_Left": 1,
