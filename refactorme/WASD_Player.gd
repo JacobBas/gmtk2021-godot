@@ -1,9 +1,11 @@
-extends Area2D
+extends Node2D
 
 # Declare member variables here. Examples:
 var tile_size : int = 32
 var buffer_press: String = ""
 var block_size : int = 1
+
+var wasd_players = get_children()
 
 var inputs = {"Arrow_Right": 1,
 			"Arrow_Left": 1,
@@ -87,7 +89,7 @@ var inputs_wasd = { # These combos are the vector direction for Arrow_Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	print(get_parent().get_node("Sticky_Boxes").get_child_count())
 	#position = position.snapped(Vector2.ONE * tile_size)
 	#position += Vector2.ONE * tile_size/2
 
@@ -99,46 +101,53 @@ func _process(delta):
 func _unhandled_input(event):
 	for dir in inputs.keys():
 		if event.is_action_released(dir):
-			print("is_action_released " + dir)
+			#print("is_action_released " + dir)
 			#buffer was empty
 			if buffer_press == "" :
 				buffer_press = dir
-				print("buffer: " + buffer_press)
+				#print("buffer: " + buffer_press)
 			#buffer was full
 			else:
 				# if moving into sticky block, convert block into WASD Player, but don't move
+				print(get_parent().get_node("Sticky_Boxes").get_child_count())
 				var stuck : bool = false
 				var sticky
-				for t_sticky in self.get_parent().get_parent().get_node("Sticky_Boxes").get_children():
-					print("Going to: " + str(position + inputs_wasd[dir + "." + buffer_press] * tile_size))
-					if position + inputs_wasd[dir + "." + buffer_press] * tile_size == t_sticky.position:
-						stuck = true
-						sticky = t_sticky
+				var player
+				for t_player in get_children() :
+					for t_sticky in get_parent().get_node("Sticky_Boxes").get_children():
+						#print("Going to: " + str(t_player.position + inputs_wasd[dir + "." + buffer_press] * tile_size))
+						if t_player.position + inputs_wasd[dir + "." + buffer_press] * tile_size == t_sticky.position:
+							stuck = true
+							sticky = t_sticky
+							player = t_player
 				if stuck :
 					print("STICK!")
-					convert_sticky(sticky)
+					convert_sticky(sticky, player)
 				else:
 					move(dir + "." + buffer_press)
 				buffer_press = ""
-				print("buffer cleared!")
+				#print("buffer cleared!")
 
 
-func convert_sticky(sticky):
+func convert_sticky(sticky, player):
 	# This basically just deletes the sticky box and creates a player instead
+	print("sticking")
 	block_size += 1
 	var temp_name : String = ("WASD_Player" + str(block_size))
-	print("Converting Sticky: " + temp_name)
+	#print("Converting Sticky: " + temp_name)
 	var temp_pos : Vector2 = sticky.position
 	sticky.queue_free() # delete the Sticky_Box pass through the function
 	var scene = load("res://refactorme/WASD_Player.tscn")
 	var scene_instance = scene.instance()
 	scene_instance.set_name(temp_name)
-	get_parent().add_child(scene_instance)
-	get_parent().get_node(temp_name).position = temp_pos
-	print(get_parent().get_node(temp_name))
-	for w in get_parent().get_children() :
+	add_child(scene_instance)
+	get_node(temp_name).position = temp_pos
+	#print(get_parent().get_node(temp_name))
+	for w in get_children() :
 		print(str(w.get_name()) + ": " + str(w.position))
 	 
 func move(dir):
-	position += inputs_wasd[dir] * tile_size
-	print("moved: " + str(position))
+	print("moving")
+	for player in get_children() :
+		player.position += inputs_wasd[dir] * tile_size
+		#print(player.get_name() + " moved: " + str(player.position))

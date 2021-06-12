@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Loop 1 - Jazzy.mp3-a3dc98e71d42d412fcd7035d0f73cb7f.mp3str"
+
+[deps]
+
+source_file="res://refactorme/files/Loop 1 - Jazzy.mp3"
+dest_files=[ "res://.import/Loop 1 - Jazzy.mp3-a3dc98e71d42d412fcd7035d0f73cb7f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
