@@ -56,10 +56,6 @@ func _unhandled_input(event):
 	# setting the valid move variable
 	var valid_move = true
 	
-	print(str(self.rotation_degrees) + str(dup_node.rotation_degrees))
-	print(str(self.scale) + str(dup_node.scale))
-	print(str(self.position) + str(dup_node.position))
-	
 	# checking the rotational movements
 	for dir in inputs_rotate.keys():
 		if event.is_action_released(dir):
