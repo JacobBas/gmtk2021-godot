@@ -1,8 +1,9 @@
-extends KinematicBody2D
+extends Area2D
 
 # Declare member variables here. Examples:
 var tile_size : int = 32
 var last_press: String = ""
+var walls : Array
 
 var inputs_trans = {
 	"Arrow_Right": ["WASD_Right", Vector2.RIGHT],
@@ -72,6 +73,10 @@ func _unhandled_input(event):
 				last_press = ""
 				position += inputs_trans[dir][1] * tile_size
 				print("moved: " + str(position))
+				walls = self.get_parent().get_node("Walls").get_used_cells()
+				for index in walls:
+					print(index)
+				print(get_overlapping_areas())
 				return null
 			else:
 				last_press = dir

@@ -4,8 +4,8 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var outside_walls
-var inside_walls
+var walls
+
 
 func get_all_nodes(node):
 	for N in node.get_children():
