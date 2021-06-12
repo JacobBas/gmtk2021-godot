@@ -4,6 +4,7 @@ extends Area2D
 var tile_size : int = 32
 var last_press: String = ""
 var walls : Array
+var index : Vector2
 
 var inputs_trans = {
 	"Arrow_Right": ["WASD_Right", Vector2.RIGHT],
@@ -32,11 +33,11 @@ var inputs_reflect = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = position.snapped(Vector2.ONE * tile_size)
-	#position += Vector2.ONE * tile_size/2
+	pass
 
 func _unhandled_input(event):
-	
+	walls = self.get_parent().get_node("Walls").get_used_cells()
+	index = Vector2((position[0] - 16)/32, (position[1] - 16)/32)
 	# checking the rotational movements
 	for dir in inputs_rotate.keys():
 		if event.is_action_released(dir):
@@ -44,9 +45,7 @@ func _unhandled_input(event):
 			print(last_press)
 			if inputs_rotate[dir][0] == last_press:
 				last_press = ""
-				print("here")
 				rotation_degrees += inputs_rotate[dir][1]
-				print("moved: " + str(position))
 				return null
 
 	# checking the reflectional movements
@@ -61,7 +60,6 @@ func _unhandled_input(event):
 					scale.y = scale.y * inputs_reflect[dir][1]
 				else:
 					scale.x = scale.x * inputs_reflect[dir][1]
-				print("moved: " + str(position))
 				return null
 			
 	# checking the translational movements
@@ -71,12 +69,9 @@ func _unhandled_input(event):
 			print(last_press)
 			if inputs_trans[dir][0] == last_press:
 				last_press = ""
-				position += inputs_trans[dir][1] * tile_size
-				print("moved: " + str(position))
-				walls = self.get_parent().get_node("Walls").get_used_cells()
-				for index in walls:
-					print(index)
-				print(get_overlapping_areas())
+				index += inputs_trans[dir][1]
+				if not (index in walls):
+					position += inputs_trans[dir][1] * tile_size
 				return null
 			else:
 				last_press = dir
