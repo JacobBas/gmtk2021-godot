@@ -85,7 +85,8 @@ var inputs_arrow = { # These combos are the vector direction for Arrow_Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = position.snapped(Vector2.ONE * tile_size)
+	pass
+	#position = position.snapped(Vector2.ONE * tile_size)
 	#position += Vector2.ONE * tile_size/2
 
 
