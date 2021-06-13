@@ -1,5 +1,8 @@
 extends Area2D
 
+# pulling in the global variables
+onready var global = get_node("/root/Global")
+
 # Declare member variables here. Examples:
 var tile_size : int = 32
 var last_press: String = ""
@@ -48,7 +51,6 @@ func _process(delta):
 		if buffer_countdown < 0:
 			last_press = ""
 			buffer_countdown = final_buffer_length
-			print("buffer cleared")
 	else :
 		buffer_countdown = final_buffer_length
 
@@ -90,6 +92,13 @@ func _unhandled_input(event):
 
 				# if there is no collision then we make the move
 				if valid_move:
+					# adding 1 to the global move counter
+					global.move_counter += 1
+					var move_counter = get_parent().get_node("MoveCounter")
+					# clearing the pre-existing text
+					move_counter.clear()
+					# adding in the new text
+					move_counter.add_text(str(global.move_counter))
 					for pos in self.get_children():
 						pos.position = call(inputs_rotate[dir][1], pos.position) * 32
 					
@@ -110,6 +119,13 @@ func _unhandled_input(event):
 						
 				# if a valid move then we make the reflection
 				if valid_move:
+					# adding 1 to the global move counter
+					global.move_counter += 1
+					var move_counter = get_parent().get_node("MoveCounter")
+					# clearing the pre-existing text
+					move_counter.clear()
+					# adding in the new text
+					move_counter.add_text(str(global.move_counter))
 					for pos in self.get_children():
 						pos.position = Vector2(pos.position[0] * (-1), pos.position[1])
 						
@@ -130,6 +146,13 @@ func _unhandled_input(event):
 				
 				# if a valid move then we make the reflection
 				if valid_move:
+					# adding 1 to the global move counter
+					global.move_counter += 1
+					var move_counter = get_parent().get_node("MoveCounter")
+					# clearing the pre-existing text
+					move_counter.clear()
+					# adding in the new text
+					move_counter.add_text(str(global.move_counter))
 					self.position += inputs_trans[dir][1] * tile_size
 					
 				# returning null out of the function
