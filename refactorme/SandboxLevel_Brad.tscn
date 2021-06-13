@@ -80,6 +80,12 @@ position = Vector2( 304, 176 )
 [node name="Sticky_Box2" parent="Sticky_Boxes" instance=ExtResource( 7 )]
 position = Vector2( 304, 112 )
 
+[node name="Sticky_Box3" parent="Sticky_Boxes" instance=ExtResource( 7 )]
+position = Vector2( 240, 112 )
+
+[node name="Sticky_Box4" parent="Sticky_Boxes" instance=ExtResource( 7 )]
+position = Vector2( 240, 176 )
+
 [node name="Arrow_Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 720, 176 )
 
