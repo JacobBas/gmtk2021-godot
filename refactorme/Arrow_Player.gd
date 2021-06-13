@@ -90,11 +90,6 @@ func _ready():
 	#position = position.snapped(Vector2.ONE * tile_size)
 	#position += Vector2.ONE * tile_size/2
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func _unhandled_input(event):
 	for dir in inputs.keys():
 		if event.is_action_released(dir):
@@ -118,7 +113,6 @@ func _unhandled_input(event):
 							sticky = t_sticky
 							player = t_player
 				if stuck :
-					print("STICK!")
 					convert_sticky(sticky, player)
 				else:
 					move(dir + "." + buffer_press)
@@ -128,7 +122,6 @@ func _unhandled_input(event):
 
 func convert_sticky(sticky, player):
 	# This basically just deletes the sticky box and creates a player instead
-	print("sticking")
 	block_size += 1
 	var temp_name : String = ("Arrow_Player" + str(block_size))
 	#print("Converting Sticky: " + temp_name)
@@ -145,6 +138,21 @@ func convert_sticky(sticky, player):
 	 
 func move(dir):
 	print("moving")
-	for player in get_children() :
-		player.position += inputs_arrow[dir] * tile_size
-		#print(player.get_name() + " moved: " + str(player.position))
+	# getting the position of the walls
+	var walls = self.get_parent().get_node("Walls").get_used_cells()
+	# creating a duplicate of the node to test out the collision 
+	var dup_node = self.duplicate()
+	# setting the valid move variales
+	var valid_move = true
+
+	# checking that a valid movement is being made
+	for pos in dup_node.get_children():
+		pos.position += inputs_arrow[dir] * tile_size
+		pos.position += Vector2(-16, -16)
+		if (pos.position/32 in walls):
+			valid_move = false
+
+	# if a valid move then we make the reflection
+	if valid_move:
+		for player in self.get_children() :
+			player.position += inputs_arrow[dir] * tile_size
