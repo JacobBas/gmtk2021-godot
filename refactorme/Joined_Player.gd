@@ -15,11 +15,17 @@ var inputs_trans = {
 	"WASD_Down": ["Arrow_Down", Vector2.DOWN]
 	}
 	
+func rotate_clockwise(pos_vector):
+	return Vector2(int(round(pos_vector[1]/32)), int(round(-pos_vector[0]/32)))
+	
+func rotate_counter(pos_vector):
+	return Vector2(int(round(-pos_vector[1]/32)), int(round(pos_vector[0]/32)))
+	
 var inputs_rotate = {
-	"Arrow_Up": ["WASD_Down", -90],
-	"Arrow_Down": ["WASD_Up", 90],
-	"WASD_Up": ["Arrow_Down", 90],
-	"WASD_Down": ["Arrow_Up", -90]
+	"Arrow_Up": ["WASD_Down", "rotate_clockwise"],
+	"Arrow_Down": ["WASD_Up", "rotate_counter"],
+	"WASD_Up": ["Arrow_Down", "rotate_counter"],
+	"WASD_Down": ["Arrow_Up", "rotate_clockwise"]
 }
 	
 var inputs_reflect = {
@@ -63,15 +69,18 @@ func _unhandled_input(event):
 				# clearing the buffer
 				last_press = ""
 				# checking to see if there are collisions
-				dup_node.rotation_degrees += inputs_rotate[dir][1]
-				for pos in get_children_pos(dup_node):
-					print(pos)
-					if pos in walls:
+				# checking to see if thie is a valid move
+				for pos in dup_node.get_children():
+					pos.position = call(inputs_rotate[dir][1], pos.position)
+					if (pos.position + get_parent_pos(dup_node)) in walls:
 						valid_move = false
-					
+
 				# if there is no collision then we make the move
 				if valid_move:
-					self.rotation_degrees += inputs_rotate[dir][1]
+					for pos in self.get_children():
+						print(pos.position)
+						pos.position = call(inputs_rotate[dir][1], pos.position) * 32
+						print(pos.position)
 					
 				# returning out of the function
 				return null
@@ -82,30 +91,16 @@ func _unhandled_input(event):
 			if inputs_reflect[dir][0] == last_press:
 				# clearing the buffer
 				last_press = ""
-				# setting the current rotation paramenter
-				var rot = int(abs(int(rotation_degrees)))
-				# finding if we should do a horizonal or vertical reflection
-				if rot % 180 == 90:
-					# checking to see if thie is a valid move
-					dup_node.scale.y = scale.y * inputs_reflect[dir][1]
-					for pos in get_children_pos(dup_node):
-						if pos in walls:
-							valid_move = false
-							
-					# if a valid move then we make the reflection
-					if valid_move:
-						self.scale.y = self.scale.y * inputs_reflect[dir][1]
+				# checking to see if thie is a valid move
+				for pos in dup_node.get_children():
+					pos.position = Vector2(pos.position[0] * (-1), pos.position[1])
+					if (pos.position + get_parent_pos(dup_node)) in walls:
+						valid_move = false
 						
-				else:
-					# checking to see if thie is a valid move
-					dup_node.scale.x = scale.x * inputs_reflect[dir][1]
-					for pos in get_children_pos(dup_node):
-						if pos in walls:
-							valid_move = false
-							
-					# if a valid move then we make the reflection
-					if valid_move:
-						self.scale.x = self.scale.x * inputs_reflect[dir][1]
+				# if a valid move then we make the reflection
+				if valid_move:
+					for pos in self.get_children():
+						pos.position = Vector2(pos.position[0] * (-1), pos.position[1])
 						
 				# returning null out of the function
 				return null
