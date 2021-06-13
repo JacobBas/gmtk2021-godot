@@ -3,6 +3,8 @@ extends Area2D
 # Declare member variables here. Examples:
 var tile_size : int = 32
 var last_press: String = ""
+var final_buffer_length : int = 300 #milliseconds
+var buffer_countdown : int = final_buffer_length
 
 var inputs_trans = {
 	"Arrow_Right": ["WASD_Right", Vector2.RIGHT],
@@ -38,6 +40,17 @@ var inputs_reflect = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+
+func _process(delta):
+	# Clear the buffer_press after final_buffer_length milliseconds have elapsed
+	if ! last_press == "":
+		buffer_countdown -= delta * 1000
+		if buffer_countdown < 0:
+			last_press = ""
+			buffer_countdown = final_buffer_length
+			print("buffer cleared")
+	else :
+		buffer_countdown = final_buffer_length
 
 func get_parent_pos(node):
 	return Vector2((node.position[0] - 16)/32, (node.position[1] - 16)/32)

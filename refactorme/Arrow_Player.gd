@@ -4,6 +4,8 @@ extends Node2D
 var tile_size : int = 32
 var buffer_press: String = ""
 var block_size : int = 1
+var final_buffer_length : int = 300 #milliseconds
+var buffer_countdown : int = final_buffer_length
 
 var arrow_players = get_children()
 
@@ -89,6 +91,17 @@ func _ready():
 	print(get_parent().get_node("Sticky_Boxes").get_child_count())
 	#position = position.snapped(Vector2.ONE * tile_size)
 	#position += Vector2.ONE * tile_size/2
+
+func _process(delta):
+	# Clear the buffer_press after final_buffer_length milliseconds have elapsed
+	if ! buffer_press == "":
+		buffer_countdown -= delta * 1000
+		if buffer_countdown < 0:
+			buffer_press = ""
+			buffer_countdown = final_buffer_length
+			print("buffer cleared")
+	else :
+		buffer_countdown = final_buffer_length
 
 func _unhandled_input(event):
 	for dir in inputs.keys():

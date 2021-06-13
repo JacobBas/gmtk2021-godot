@@ -7,6 +7,9 @@ onready var global = get_node("/root/Global")
 var tile_size : int = 32
 var buffer_press: String = ""
 var block_size : int = 1
+var final_buffer_length : int = 300 #milliseconds
+var buffer_countdown : int = final_buffer_length
+
 var wasd_players = get_children()
 
 var inputs = {"Arrow_Right": 1,
@@ -92,6 +95,17 @@ func _ready():
 	#position = position.snapped(Vector2.ONE * tile_size)
 	#position += Vector2.ONE * tile_size/2
 
+
+func _process(delta):
+	# Clear the buffer_press after final_buffer_length milliseconds have elapsed
+	if ! buffer_press == "":
+		buffer_countdown -= delta * 1000
+		if buffer_countdown < 0:
+			buffer_press = ""
+			buffer_countdown = final_buffer_length
+			print("buffer cleared")
+	else :
+		buffer_countdown = final_buffer_length
 
 func _unhandled_input(event):
 	for dir in inputs.keys():
