@@ -57,6 +57,14 @@ func join_separate(pivot_pos):
 					# adding the child to the Joine_Player scene
 					scene_instance.add_child(scene_child)
 
+		# adding in a rotation indicator
+		var texture = load("res://refactorme/files/rotate-yellow.png")
+		var sprite = Sprite.new()
+		sprite.set_texture(texture)
+		sprite.scale = sprite.scale * .2
+		
+		# adding the sprite to the scene
+		scene_instance.add_child(sprite)
 
 		# adding the joined player node to the screen
 		self.add_child(scene_instance)
