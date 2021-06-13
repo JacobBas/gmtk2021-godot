@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://refactorme/files/outside_wall.png" type="Texture" id=1]
 [ext_resource path="res://refactorme/WASD_Player.tscn" type="PackedScene" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://refactorme/WASD_Player.gd" type="Script" id=5]
 [ext_resource path="res://refactorme/Global.gd" type="Script" id=6]
 [ext_resource path="res://refactorme/Goal_Joined.gd" type="Script" id=7]
+[ext_resource path="res://refactorme/Sticky_Box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://refactorme/Arrow_Player.gd" type="Script" id=9]
 [ext_resource path="res://refactorme/files/darkgreybox.png" type="Texture" id=10]
+[ext_resource path="res://refactorme/files/wall_final.png" type="Texture" id=11]
 [ext_resource path="res://refactorme/MoveCounter.gd" type="Script" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -59,6 +61,29 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
+2/name = "wall_final.png 2"
+2/texture = ExtResource( 11 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 100, 100 )
+2/tile_mode = 1
+2/autotile/bitmask_mode = 0
+2/autotile/bitmask_flags = [  ]
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 32, 32 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="TileSet" id=3]
 0/name = "darkgreybox.png 0"
@@ -104,6 +129,24 @@ __meta__ = {
 }
 
 [node name="Sticky_Boxes" type="Node2D" parent="."]
+
+[node name="Sticky_Box" parent="Sticky_Boxes" instance=ExtResource( 8 )]
+position = Vector2( 144, 208 )
+
+[node name="Sticky_Box2" parent="Sticky_Boxes" instance=ExtResource( 8 )]
+position = Vector2( 272, 240 )
+
+[node name="Sticky_Box3" parent="Sticky_Boxes" instance=ExtResource( 8 )]
+position = Vector2( 336, 176 )
+
+[node name="Sticky_Box4" parent="Sticky_Boxes" instance=ExtResource( 8 )]
+position = Vector2( 112, 304 )
+
+[node name="Sticky_Box5" parent="Sticky_Boxes" instance=ExtResource( 8 )]
+position = Vector2( 368, 304 )
+
+[node name="Sticky_Box6" parent="Sticky_Boxes" instance=ExtResource( 8 )]
+position = Vector2( 336, 112 )
 
 [node name="WASD_Players" type="Node2D" parent="."]
 script = ExtResource( 5 )

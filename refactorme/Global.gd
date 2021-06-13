@@ -18,47 +18,48 @@ func get_all_nodes(node):
 
 
 func join_separate(pivot_pos):
-	# relative positions from the pivot point
-	var rel_positions = []
-	# adding the wasd_node children to the array
-	for child in wasd_node.get_children():
-		rel_positions.append(child.position - pivot_pos)
-	
-	# adding the arrow_node children to the array
-	for child in arrow_node.get_children():
-		rel_positions.append(child.position - pivot_pos)
+	if not self.has_node("Joined_Player"):
+		# relative positions from the pivot point
+		var rel_positions = []
+		# adding the wasd_node children to the array
+		for child in wasd_node.get_children():
+			rel_positions.append(child.position - pivot_pos)
 		
-	# removing the wasd and arrow players from the screen
-	wasd_node.queue_free()
-	arrow_node.queue_free()
+		# adding the arrow_node children to the array
+		for child in arrow_node.get_children():
+			rel_positions.append(child.position - pivot_pos)
+			
+		# removing the wasd and arrow players from the screen
+		wasd_node.queue_free()
+		arrow_node.queue_free()
 
-	# creating the new Joined_Player object	
-	var scene = load("res://refactorme/Joined_Player.tscn")
-	var scene_instance = scene.instance()
-	
-	# setting the Joined_Player attributes
-	scene_instance.set_name("Joined_Player")
-	scene_instance.position = pivot_pos
+		# creating the new Joined_Player object	
+		var scene = load("res://refactorme/Joined_Player.tscn")
+		var scene_instance = scene.instance()
+		
+		# setting the Joined_Player attributes
+		scene_instance.set_name("Joined_Player")
+		scene_instance.position = pivot_pos
 
-	# pulling out the initialized child values
-	var scene_children = scene_instance.get_children().duplicate()
+		# pulling out the initialized child values
+		var scene_children = scene_instance.get_children().duplicate()
 
-	# looping through all of the required postions
-	for i in range(0, rel_positions.size()):
-		if not (rel_positions[i] == Vector2(0,0)):
-			# looping the initialized children
-			for child in scene_children:
-				# duplicating the child object
-				var scene_child = child.duplicate()
-				# setting the child object attributes 
-				scene_child.set_name(str(child.get_name()) + str(i))
-				scene_child.position = rel_positions[i]
-				# adding the child to the Joine_Player scene
-				scene_instance.add_child(scene_child)
+		# looping through all of the required postions
+		for i in range(0, rel_positions.size()):
+			if not (rel_positions[i] == Vector2(0,0)):
+				# looping the initialized children
+				for child in scene_children:
+					# duplicating the child object
+					var scene_child = child.duplicate()
+					# setting the child object attributes 
+					scene_child.set_name(str(child.get_name()) + str(i))
+					scene_child.position = rel_positions[i]
+					# adding the child to the Joine_Player scene
+					scene_instance.add_child(scene_child)
 
 
-	# adding the joined player node to the screen
-	self.add_child(scene_instance)
+		# adding the joined player node to the screen
+		self.add_child(scene_instance)
 
 
 # running a background process
