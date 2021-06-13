@@ -82,9 +82,6 @@ var inputs_wasd = { # These combos are the vector direction for Arrow_Player
 	"WASD_Left.WASD_Down" : Vector2.ZERO,
 	"WASD_Up.WASD_Down" : Vector2.ZERO,
 	"WASD_Down.WASD_Down" : Vector2.ZERO,
-
-
-
 }
 
 # Called when the node enters the scene tree for the first time.
