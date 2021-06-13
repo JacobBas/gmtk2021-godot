@@ -58,7 +58,7 @@ func join_separate(pivot_pos):
 					scene_instance.add_child(scene_child)
 
 		# adding in a rotation indicator
-		var texture = load("res://refactorme/files/rotate-yellow.png")
+		var texture = load("res://refactorme/files/main-sign.png")
 		var sprite = Sprite.new()
 		sprite.set_texture(texture)
 		sprite.scale = sprite.scale * .2
