@@ -91,10 +91,6 @@ func _ready():
 	#position += Vector2.ONE * tile_size/2
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func _unhandled_input(event):
 	for dir in inputs.keys():
 		if event.is_action_released(dir):
