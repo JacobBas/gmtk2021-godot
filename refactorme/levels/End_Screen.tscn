@@ -17,9 +17,9 @@ position = Vector2( 480, 480 )
 texture = ExtResource( 1 )
 
 [node name="MoveCounter" type="RichTextLabel" parent="."]
-margin_left = 424.0
+margin_left = 408.0
 margin_top = 488.0
-margin_right = 487.0
+margin_right = 516.0
 margin_bottom = 512.0
 rect_scale = Vector2( 1.92, 1.68 )
 text = "Score: "
