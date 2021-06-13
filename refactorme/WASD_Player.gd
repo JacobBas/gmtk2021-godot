@@ -1,10 +1,12 @@
 extends Node2D
 
-# Declare member variables here. Examples:
+# pulling in the global variables
+onready var global = get_node("/root/Global")
+
+# script variables
 var tile_size : int = 32
 var buffer_press: String = ""
 var block_size : int = 1
-
 var wasd_players = get_children()
 
 var inputs = {"Arrow_Right": 1,
@@ -101,6 +103,14 @@ func _unhandled_input(event):
 				#print("buffer: " + buffer_press)
 			#buffer was full
 			else:
+				# adding 1 to the global move counter
+				global.move_counter += 1
+				var move_counter = get_parent().get_node("MoveCounter")
+				# clearing the pre-existing text
+				move_counter.clear()
+				# adding in the new text
+				move_counter.add_text(str(global.move_counter))
+				
 				# if moving into sticky block, convert block into WASD Player, but don't move
 				print(get_parent().get_node("Sticky_Boxes").get_child_count())
 				var stuck : bool = false
@@ -124,7 +134,7 @@ func _unhandled_input(event):
 
 func convert_sticky(sticky, player):
 	# This basically just deletes the sticky box and creates a player instead
-	print("sticking")
+
 	block_size += 1
 	var temp_name : String = ("WASD_Player" + str(block_size))
 	#print("Converting Sticky: " + temp_name)
@@ -135,7 +145,6 @@ func convert_sticky(sticky, player):
 	scene_instance.set_name(temp_name)
 	add_child(scene_instance)
 	get_node(temp_name).position = temp_pos
-	#print(get_parent().get_node(temp_name))
 	for w in get_children() :
 		print(str(w.get_name()) + ": " + str(w.position))
 	 
