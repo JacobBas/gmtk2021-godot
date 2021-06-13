@@ -19,7 +19,8 @@ var level_mapping_jank = {
 	"Rotation" : "Order_Of_Operations",
 	"Order_Of_Operations" : "Flippy",
 	"Flippy" : "Whippy",
-	"Whippy" : "End_Screen",
+	"Whippy" : "TSpin",
+	"TSpin" : "End_Screen",
 }
 
 func _ready():

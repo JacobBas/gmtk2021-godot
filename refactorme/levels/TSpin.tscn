@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://refactorme/files/outside_wall.png" type="Texture" id=1]
 [ext_resource path="res://refactorme/files/inner_floor.png" type="Texture" id=2]
 [ext_resource path="res://refactorme/Global.gd" type="Script" id=3]
 [ext_resource path="res://refactorme/MoveCounter.gd" type="Script" id=4]
-[ext_resource path="res://refactorme/WASD_Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://refactorme/Arrow_Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://refactorme/files/darkgreybox.png" type="Texture" id=7]
-[ext_resource path="res://refactorme/WASD_Player.gd" type="Script" id=8]
-[ext_resource path="res://refactorme/Goal_Separate.gd" type="Script" id=9]
+[ext_resource path="res://refactorme/Sticky_Box.tscn" type="PackedScene" id=5]
+[ext_resource path="res://refactorme/WASD_Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://refactorme/Arrow_Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://refactorme/files/darkgreybox.png" type="Texture" id=8]
+[ext_resource path="res://refactorme/WASD_Player.gd" type="Script" id=9]
 [ext_resource path="res://refactorme/Arrow_Player.gd" type="Script" id=10]
+[ext_resource path="res://refactorme/Goal_Joined.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -62,7 +63,7 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [sub_resource type="TileSet" id=3]
 0/name = "darkgreybox.png 0"
-0/texture = ExtResource( 7 )
+0/texture = ExtResource( 8 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 32, 32 )
@@ -76,16 +77,16 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="Spirals" type="Node2D"]
+[node name="TSpin" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
 [node name="instruct" type="RichTextLabel" parent="."]
-margin_left = 272.0
+margin_left = 176.0
 margin_top = 80.0
-margin_right = 432.0
+margin_right = 336.0
 margin_bottom = 128.0
-text = "Try to get this in 14 moves!"
+text = "What's a block game without a T-spin?"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -96,14 +97,14 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 show_collision = true
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 65536, 0, 0, 65543, 0, 0, 65550, 0, 0, 131072, 0, 0, 131079, 0, 0, 131086, 0, 0, 196608, 0, 0, 196615, 0, 0, 196622, 0, 0, 262144, 0, 0, 262151, 0, 0, 262158, 0, 0, 327680, 0, 0, 327687, 0, 0, 327694, 0, 0, 393216, 0, 0, 393223, 0, 0, 393226, 0, 0, 393230, 0, 0, 458752, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458762, 0, 0, 458766, 0, 0, 524288, 0, 0, 524291, 0, 0, 524295, 0, 0, 524298, 0, 0, 524302, 0, 0, 589824, 0, 0, 589827, 0, 0, 589831, 0, 0, 589834, 0, 0, 589838, 0, 0, 655360, 0, 0, 655363, 0, 0, 655367, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 720896, 0, 0, 720903, 0, 0, 720910, 0, 0, 786432, 0, 0, 786439, 0, 0, 786446, 0, 0, 851968, 0, 0, 851975, 0, 0, 851982, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 65536, 0, 0, 65550, 0, 0, 131072, 0, 0, 131086, 0, 0, 196608, 0, 0, 196622, 0, 0, 262144, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262158, 0, 0, 327680, 0, 0, 327685, 0, 0, 327686, 0, 0, 327689, 0, 0, 327694, 0, 0, 393216, 0, 0, 393221, 0, 0, 393225, 0, 0, 393230, 0, 0, 458752, 0, 0, 458757, 0, 0, 458758, 0, 0, 458761, 0, 0, 458766, 0, 0, 524288, 0, 0, 524294, 0, 0, 524297, 0, 0, 524302, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 655360, 0, 0, 655374, 0, 0, 720896, 0, 0, 720897, 0, 0, 720909, 0, 0, 720910, 0, 0, 786432, 0, 0, 786433, 0, 0, 786446, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851981, 0, 0, 851982, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0 )
 
-[node name="Goal_Separate" type="TileMap" parent="."]
+[node name="Goal_Joined" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 196611, 0, 0, 524300, 0, 0 )
-script = ExtResource( 9 )
+tile_data = PoolIntArray( 327687, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0 )
+script = ExtResource( 11 )
 
 [node name="MoveCounter" type="RichTextLabel" parent="."]
 margin_left = 224.0
@@ -116,14 +117,23 @@ __meta__ = {
 
 [node name="Sticky_Boxes" type="Node2D" parent="."]
 
-[node name="WASD_Players" type="Node2D" parent="."]
-script = ExtResource( 8 )
+[node name="Sticky_Box5" parent="Sticky_Boxes" instance=ExtResource( 5 )]
+position = Vector2( 432, 400 )
 
-[node name="WASD_Player" parent="WASD_Players" instance=ExtResource( 5 )]
-position = Vector2( 176, 304 )
+[node name="Sticky_Box2" parent="Sticky_Boxes" instance=ExtResource( 5 )]
+position = Vector2( 80, 400 )
+
+[node name="Sticky_Box4" parent="Sticky_Boxes" instance=ExtResource( 5 )]
+position = Vector2( 112, 432 )
+
+[node name="WASD_Players" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="WASD_Player" parent="WASD_Players" instance=ExtResource( 6 )]
+position = Vector2( 144, 400 )
 
 [node name="Arrow_Players" type="Node2D" parent="."]
 script = ExtResource( 10 )
 
-[node name="Arrow_Player" parent="Arrow_Players" instance=ExtResource( 6 )]
-position = Vector2( 336, 400 )
+[node name="Arrow_Player" parent="Arrow_Players" instance=ExtResource( 7 )]
+position = Vector2( 368, 400 )

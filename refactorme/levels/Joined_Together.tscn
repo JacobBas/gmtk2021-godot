@@ -80,6 +80,28 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 
+[node name="instruct" type="RichTextLabel" parent="."]
+margin_left = 128.0
+margin_top = 304.0
+margin_right = 352.0
+margin_bottom = 352.0
+text = "These blocks really want to be together. Push them into each other to MERGE!"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="instruct2" type="RichTextLabel" parent="."]
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 352.0
+margin_bottom = 176.0
+text = "Once merged, move by pressing the same direction on both WASD and the Arrow Keys (e.g. W+Up)"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Walls" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
