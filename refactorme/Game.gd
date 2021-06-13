@@ -6,6 +6,7 @@ var sound_direct = preload("res://refactorme/sound_direct.tscn")
 var level_mapping_jank = { 
 
 	# as more levels are added, uncomment below and make the last level end on end screen
+	"Title_Screen" : "Joined_Apart",
 	"Joined_Apart" : "Opposites",
 	"Opposites" : "Snakes",
 	"Snakes" : "Offset",

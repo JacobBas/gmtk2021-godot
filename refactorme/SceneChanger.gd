@@ -12,3 +12,6 @@ func change_scene(path, delay = 2.5):
 #	yield(animation_player, "animation_finished")
 	assert(get_tree().change_scene(path) == OK)
 #	animation_player.play_backwards("fade")
+
+func change_scene_quickly(path) :
+	change_scene(path, 0.2)
