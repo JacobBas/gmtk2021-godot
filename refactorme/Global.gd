@@ -6,6 +6,7 @@ onready var wasd_node = get_node("WASD_Players")
 onready var arrow_node = get_node("Arrow_Players")
 var area_ind : Area2D = Area2D.new()
 
+
 func get_all_nodes(node):
 	for N in node.get_children():
 		if N.get_child_count() > 0:
@@ -72,11 +73,5 @@ func _process(delta):
 					join_separate(wasd_child.position)
 
 
-	
-	
-	
-	
-	
-	
-	
-	
+func add_scn_pth(scn):
+	return "res://refactorme/levels/"+scn+".tscn"
