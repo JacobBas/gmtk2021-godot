@@ -96,7 +96,7 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131076, 0, 0, 131082, 0, 0 )
+tile_data = PoolIntArray( 131076, 0, 0, 786442, 0, 0 )
 script = ExtResource( 11 )
 
 [node name="MoveCounter" type="RichTextLabel" parent="."]
@@ -120,4 +120,4 @@ position = Vector2( 144, 400 )
 script = ExtResource( 9 )
 
 [node name="Arrow_Player" parent="Arrow_Players" instance=ExtResource( 4 )]
-position = Vector2( 336, 400 )
+position = Vector2( 336, 80 )
