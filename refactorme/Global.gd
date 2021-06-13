@@ -74,6 +74,5 @@ func _process(delta):
 				if wasd_child.position == arrow_child.position:
 					join_separate(wasd_child.position)
 
-
 func add_scn_pth(scn):
 	return "res://refactorme/levels/"+scn+".tscn"
