@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://refactorme/files/inner_floor.png" type="Texture" id=1]
 [ext_resource path="res://refactorme/files/darkgreybox.png" type="Texture" id=2]
@@ -10,6 +10,12 @@
 [ext_resource path="res://refactorme/Arrow_Player.gd" type="Script" id=8]
 [ext_resource path="res://refactorme/WASD_Player.gd" type="Script" id=9]
 [ext_resource path="res://refactorme/Goal_Separate.gd" type="Script" id=10]
+[ext_resource path="res://refactorme/files/W-yellow.png" type="Texture" id=11]
+[ext_resource path="res://refactorme/files/S-white.png" type="Texture" id=12]
+[ext_resource path="res://refactorme/files/A-white.png" type="Texture" id=13]
+[ext_resource path="res://refactorme/files/D-white.png" type="Texture" id=14]
+[ext_resource path="res://refactorme/files/arrow-white.png" type="Texture" id=15]
+[ext_resource path="res://refactorme/files/arrow-yellow.png" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -79,6 +85,55 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 [node name="Joined_Apart" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 4 )
+
+[node name="Arrow_Text" type="Node2D" parent="."]
+position = Vector2( 320, 240 )
+
+[node name="arrow-yellow" type="Sprite" parent="Arrow_Text"]
+position = Vector2( 32, 1.52588e-05 )
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 16 )
+
+[node name="arrow-white" type="Sprite" parent="Arrow_Text"]
+position = Vector2( 0, 32 )
+rotation = 4.71239
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 15 )
+
+[node name="arrow-white2" type="Sprite" parent="Arrow_Text"]
+position = Vector2( 32, 32 )
+rotation = 3.14159
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 15 )
+
+[node name="arrow-white3" type="Sprite" parent="Arrow_Text"]
+position = Vector2( 64, 32 )
+rotation = 1.5708
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 15 )
+
+[node name="WASD_Text" type="Node2D" parent="."]
+position = Vector2( 96, 240 )
+
+[node name="W-yellow" type="Sprite" parent="WASD_Text"]
+position = Vector2( 32, 0 )
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 11 )
+
+[node name="S-white" type="Sprite" parent="WASD_Text"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 12 )
+
+[node name="A-white" type="Sprite" parent="WASD_Text"]
+position = Vector2( 1.52588e-05, 32 )
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 13 )
+
+[node name="D-white" type="Sprite" parent="WASD_Text"]
+position = Vector2( 64, 32 )
+scale = Vector2( 0.34, 0.34 )
+texture = ExtResource( 14 )
 
 [node name="Walls" type="TileMap" parent="."]
 tile_set = SubResource( 2 )

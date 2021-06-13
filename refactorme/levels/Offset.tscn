@@ -80,6 +80,17 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 4 )
 
+[node name="instruct" type="RichTextLabel" parent="."]
+margin_left = 272.0
+margin_top = 160.0
+margin_right = 432.0
+margin_bottom = 208.0
+text = "Push into wall to let the blue square move by itself!"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Walls" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )

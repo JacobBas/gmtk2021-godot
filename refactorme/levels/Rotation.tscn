@@ -81,6 +81,17 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
+[node name="instruct" type="RichTextLabel" parent="."]
+margin_left = 112.0
+margin_top = 304.0
+margin_right = 368.0
+margin_bottom = 352.0
+text = "Once merged, you can rotate. Press W+Down for clockwise; S+Up for counterclockwise"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Walls" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
