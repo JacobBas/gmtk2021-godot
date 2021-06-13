@@ -45,15 +45,16 @@ func join_separate(pivot_pos):
 
 	# looping through all of the required postions
 	for i in range(0, rel_positions.size()):
-		# looping the initialized children
-		for child in scene_children:
-			# duplicating the child object
-			var scene_child = child.duplicate()
-			# setting the child object attributes 
-			scene_child.set_name(str(child.get_name()) + str(i))
-			scene_child.position = rel_positions[i]
-			# adding the child to the Joine_Player scene
-			scene_instance.add_child(scene_child)
+		if not (rel_positions[i] == Vector2(0,0)):
+			# looping the initialized children
+			for child in scene_children:
+				# duplicating the child object
+				var scene_child = child.duplicate()
+				# setting the child object attributes 
+				scene_child.set_name(str(child.get_name()) + str(i))
+				scene_child.position = rel_positions[i]
+				# adding the child to the Joine_Player scene
+				scene_instance.add_child(scene_child)
 
 
 	# adding the joined player node to the screen
