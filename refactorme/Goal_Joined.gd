@@ -25,27 +25,15 @@ func check_win() :
 	var win : bool = true
 	var goal_tiles = get_used_cells()
 	#print(goal_tiles)
-	var wasd_tiles = get_parent().get_node("WASD_Players").get_children()
-	var arrow_tiles = get_parent().get_node("Arrow_Players").get_children()
-	if ! goal_tiles.size() == wasd_tiles.size() + arrow_tiles.size() :
+	if ! goal_tiles.size() * 2 == get_parent().get_node("Joined_Player").get_child_count():
 		win = false
 		#print("size check failed")
-	for wasd_tile in wasd_tiles:
+	for pos in get_parent().get_node("Joined_Player").get_children():
 		var checks_out = false
-		var wasd_pos : Vector2 = Vector2((wasd_tile.position[0]-16)/32, (wasd_tile.position[1]-16)/32)
-		#print(wasd_pos)
-		if wasd_pos in goal_tiles :
+		var joined_pos : Vector2 = Vector2((pos.position.x + get_parent().get_node("Joined_Player").position[0]-16)/32, (pos.position.y + get_parent().get_node("Joined_Player").position[1]-16)/32)
+		print(joined_pos)
+		if (joined_pos) in goal_tiles:
 			checks_out = true
-			#print("wasd in goal passed")
-		if ! checks_out :
-			win = false
-	for arrow_tile in arrow_tiles:
-		var checks_out = false
-		var arrow_pos : Vector2 = Vector2((arrow_tile.position[0]-16)/32, (arrow_tile.position[1]-16)/32)
-		#print(arrow_pos)
-		if arrow_pos in goal_tiles :
-			checks_out = true
-			#print("arrow in goal passed")
 		if ! checks_out :
 			win = false
 	if win :
