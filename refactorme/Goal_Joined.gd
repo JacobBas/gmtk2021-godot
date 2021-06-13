@@ -25,23 +25,25 @@ func _process(delta):
 		clock = final_clock
 
 func check_win() :
-	var win : bool = true
-	var goal_tiles = get_used_cells()
-	#print(goal_tiles)
-	if ! goal_tiles.size() * 2 == get_parent().get_node("Joined_Player").get_child_count():
-		win = false
-		#print("size check failed")
-	for pos in get_parent().get_node("Joined_Player").get_children():
-		var checks_out = false
-		var joined_pos : Vector2 = Vector2((pos.position.x + get_parent().get_node("Joined_Player").position[0]-16)/32, (pos.position.y + get_parent().get_node("Joined_Player").position[1]-16)/32)
-		print(joined_pos)
-		if (joined_pos) in goal_tiles:
-			checks_out = true
-		if ! checks_out :
+	if get_parent().has_node("Joined_Player"):
+		print("here")
+		var win : bool = true
+		var goal_tiles = get_used_cells()
+		#print(goal_tiles)
+		if ! goal_tiles.size() * 2 == get_parent().get_node("Joined_Player").get_child_count():
 			win = false
-	if win :
-		#print("Win")
-		trigger_level_win()
+			#print("size check failed")
+		for pos in get_parent().get_node("Joined_Player").get_children():
+			var checks_out = false
+			var joined_pos : Vector2 = Vector2((pos.position.x + get_parent().get_node("Joined_Player").position[0]-16)/32, (pos.position.y + get_parent().get_node("Joined_Player").position[1]-16)/32)
+			print(joined_pos)
+			if (joined_pos) in goal_tiles:
+				checks_out = true
+			if ! checks_out :
+				win = false
+		if win :
+			#print("Win")
+			trigger_level_win()
 
 func trigger_level_win():
 	if ! triggered_level_win:

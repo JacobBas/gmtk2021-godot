@@ -5,6 +5,7 @@ var sound_direct = preload("res://refactorme/sound_direct.tscn")
 
 var level_mapping_jank = { 
 	# as more levels are added, uncomment below and make the last level end on end screen
+	"Level_00" : "Level_01",
 	"Level_01" : "Level_02",
 	"Level_02" : "Level_03",
 	"Level_03" : "Level_04",
