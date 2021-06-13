@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal scene_changed()
 
-func change_scene(path, delay = 2.5):
+func change_scene(path, delay = 1.5):
 #	var animation_player : AnimationPlayer = get_node("AnimationPlayer")
 #	print(animation_player)
 #	var black = get_node("Control/Black")

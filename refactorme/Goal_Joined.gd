@@ -5,7 +5,7 @@ extends TileMap
 # var a = 2
 # var b = "text"
 
-var audio_file = preload("res://refactorme/files/egregious.mp3")
+var audio_file = preload("res://refactorme/files/goal.mp3")
 var sound_direct = preload("res://refactorme/sound_direct.tscn")
 
 var final_clock : int = 20

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/goal.mp3-37112ef2079fa00c50684b810770737d.mp3str"
+
+[deps]
+
+source_file="res://refactorme/files/goal.mp3"
+dest_files=[ "res://.import/goal.mp3-37112ef2079fa00c50684b810770737d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
