@@ -30,7 +30,8 @@ func check_win() :
 		var win : bool = true
 		var goal_tiles = get_used_cells()
 		#print(goal_tiles)
-		if ! goal_tiles.size() * 2 == get_parent().get_node("Joined_Player").get_child_count():
+
+		if ! goal_tiles.size() == Global.unique_pos(get_parent().get_node("Joined_Player").get_children()).size():
 			win = false
 			#print("size check failed")
 		for pos in get_parent().get_node("Joined_Player").get_children():

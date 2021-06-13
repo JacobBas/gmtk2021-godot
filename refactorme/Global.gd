@@ -74,5 +74,17 @@ func _process(delta):
 				if wasd_child.position == arrow_child.position:
 					join_separate(wasd_child.position)
 
+func unique_pos(arr : Array):
+	var uni : Array
+	if arr.size() > 0:
+		for i in range(arr.size()) :
+			var is_dupl = false
+			for j in range(uni.size()) :
+				if uni[j].position == arr[i].position :
+					is_dupl = true
+			if ! is_dupl :
+				uni.append(arr[i])
+	return uni
+
 func add_scn_pth(scn):
 	return "res://refactorme/levels/"+scn+".tscn"

@@ -4,23 +4,21 @@ var background = preload("res://refactorme/files/Loop 1 - Jazzy.mp3")
 var sound_direct = preload("res://refactorme/sound_direct.tscn")
 
 var level_mapping_jank = { 
+
 	# as more levels are added, uncomment below and make the last level end on end screen
 	"Joined_Apart" : "Opposites",
 	"Opposites" : "Snakes",
 	"Snakes" : "Offset",
-	"Offset" : "Sticky_Situation",
+	"Offset" : "Spirals",
+	"Spirals" : "Sticky_Situation",
 	"Sticky_Situation" : "Sticky_Situation2",
 	"Sticky_Situation2" : "Joined_Together",
 	"Joined_Together" : "Sticky_Situation3",
-	"Sticky_Situation3" : "End_Screen",
-#	"Level_08" : "Level_09",
-#	"Level_09" : "Level_10",
-#	"Level_10" : "Level_11",
-#	"Level_11" : "Level_12",
-#	"Level_12" : "Level_13",
-#	"Level_13" : "Level_14",
-#	"Level_14" : "Level_15",
-#	"Level_15" : "Level_16"
+	"Sticky_Situation3" : "Rotation",
+	"Rotation" : "Order_Of_Operations",
+	"Order_Of_Operations" : "Flippy",
+	"Flippy" : "Whippy",
+	"Whippy" : "End_Screen",
 }
 
 func _ready():
