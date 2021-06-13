@@ -11,13 +11,15 @@ config_version=4
 [application]
 
 config/name="gmtk2021-godot"
-run/main_scene="res://refactorme/SandboxLevel.tscn"
+run/main_scene="res://refactorme/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://refactorme/Global.gd"
 MoveCounter="*res://refactorme/MoveCounter.gd"
+SceneChanger="*res://refactorme/SceneChanger.gd"
+Game="*res://refactorme/Game.gd"
 
 [display]
 

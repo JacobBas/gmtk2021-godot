@@ -5,6 +5,9 @@ extends TileMap
 # var a = 2
 # var b = "text"
 
+var audio_file = preload("res://refactorme/files/egregious.mp3")
+var sound_direct = preload("res://refactorme/sound_direct.tscn")
+
 var final_clock : int = 20
 var clock : int = final_clock
 
@@ -55,16 +58,13 @@ func check_win() :
 func trigger_level_win():
 	if ! triggered_level_win:
 		print("TRIGGERED")
-		var audio_file = "res://refactorme/files/egregious.mp3"
-		if File.new().file_exists(audio_file):
-			var speech_player = get_parent().get_node("AudioStreamPlayer")
-			print("file exists")
-			var sfx = load(audio_file) 
-			sfx.set_loop(false)
-			speech_player.stream = sfx
-			speech_player.pitch_scale = 0.9
-			speech_player.play()
+		var sound = sound_direct.instance()
+		add_child(sound)
+		sound.play_sound(audio_file)
 		triggered_level_win = true
+		var ky : String = get_tree().current_scene.name
+		print(ky)
+		SceneChanger.change_scene(Global.add_scn_pth(Game.level_mapping_jank[ky]))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
