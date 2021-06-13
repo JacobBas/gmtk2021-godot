@@ -78,9 +78,7 @@ func _unhandled_input(event):
 				# if there is no collision then we make the move
 				if valid_move:
 					for pos in self.get_children():
-						print(pos.position)
 						pos.position = call(inputs_rotate[dir][1], pos.position) * 32
-						print(pos.position)
 					
 				# returning out of the function
 				return null
@@ -93,7 +91,7 @@ func _unhandled_input(event):
 				last_press = ""
 				# checking to see if thie is a valid move
 				for pos in dup_node.get_children():
-					pos.position = Vector2(pos.position[0] * (-1), pos.position[1])
+					pos.position = Vector2(pos.position[0] * (-1), pos.position[1])/32
 					if (pos.position + get_parent_pos(dup_node)) in walls:
 						valid_move = false
 						
