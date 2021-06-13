@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/egregious.mp3-f372b888aad1b5d9068acd9b8ad9bdf0.mp3str"
+
+[deps]
+
+source_file="res://refactorme/files/egregious.mp3"
+dest_files=[ "res://.import/egregious.mp3-f372b888aad1b5d9068acd9b8ad9bdf0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
